@@ -6,7 +6,7 @@ import {
   type IncomingMessage,
   type ServerResponse,
 } from "node:http";
-import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
+import { mkdir, readFile, realpath, rename, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { promisify } from "node:util";
 import {
@@ -519,13 +519,12 @@ async function connectRepository(
     ["-C", repositoryPath, "rev-parse", "--show-toplevel"],
     { windowsHide: true },
   );
-  const root = resolve(rootOutput.trim());
+  const root = await realpath(resolve(rootOutput.trim()));
+  const requestedRoot = await realpath(repositoryPath);
   const comparableRoot =
     process.platform === "win32" ? root.toLowerCase() : root;
   const comparableRequested =
-    process.platform === "win32"
-      ? repositoryPath.toLowerCase()
-      : repositoryPath;
+    process.platform === "win32" ? requestedRoot.toLowerCase() : requestedRoot;
   if (comparableRoot !== comparableRequested)
     throw new Error(`Use the repository root: ${root}`);
   const { stdout: headOutput } = await execFileAsync(

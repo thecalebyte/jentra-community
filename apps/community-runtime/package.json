@@ -1,6 +1,6 @@
 {
   "name": "@jentra/community-runtime",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Local-first Jentra coordination runtime",
   "author": "Norvande Ltd",
   "license": "Apache-2.0",
