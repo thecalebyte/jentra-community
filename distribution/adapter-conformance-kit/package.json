@@ -1,0 +1,23 @@
+{
+  "name": "@jentra/adapter-conformance",
+  "version": "0.1.0",
+  "author": "Norvande Ltd",
+  "description": "Provider-neutral Jentra agent-harness conformance checks",
+  "license": "Apache-2.0",
+  "type": "module",
+  "exports": "./src/index.mjs",
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

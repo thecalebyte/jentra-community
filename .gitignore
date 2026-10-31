@@ -1,0 +1,9 @@
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.jentra/
+.env
+.env.*
+!.env.example
+*.log

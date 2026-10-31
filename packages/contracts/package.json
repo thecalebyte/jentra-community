@@ -1,0 +1,29 @@
+{
+  "name": "@jentra/contracts",
+  "version": "0.2.5",
+  "author": "Norvande Ltd",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thecalebyte/jentra-community.git",
+    "directory": "packages/contracts"
+  },
+  "type": "module",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "default": "./dist/index.js"
+  },
+  "files": [
+    "dist/index.js",
+    "dist/index.js.map",
+    "dist/index.d.ts",
+    "dist/index.d.ts.map",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "zod": "4.6.6"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@jentra/agent-skill",
+  "version": "0.1.0",
+  "description": "Portable participation skill for agents working through Jentra",
+  "author": "Norvande Ltd",
+  "license": "Apache-2.0",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "references",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

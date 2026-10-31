@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist", "rootDir": "src", "types": ["node"] },
+  "references": [
+    { "path": "../../packages/contracts" },
+    { "path": "../../packages/local-runner" },
+    { "path": "../../packages/sdk-typescript" }
+  ],
+  "include": ["src/**/*.ts"]
+}

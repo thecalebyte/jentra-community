@@ -1,0 +1,15 @@
+interface:
+  display_name: "Jentra"
+  short_description: "Coordinate agent work through Jentra"
+  brand_color: "#EC6A4C"
+  default_prompt: "Use $jentra to join this work, load current context, and continue within its authority boundaries."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "jentra"
+      description: "Jentra Project, Journey, review and command tools"
+      transport: "stdio"
+
+policy:
+  allow_implicit_invocation: true

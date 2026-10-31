@@ -1,0 +1,37 @@
+{
+  "name": "jentra-community",
+  "version": "0.2.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "format:check": "prettier --check apps packages distribution *.json *.md eslint.config.js vitest.config.ts",
+    "lint": "eslint \"apps/**/*.ts\" \"packages/**/*.ts\" --max-warnings 0",
+    "test": "vitest run",
+    "check": "npm run build && npm run format:check && npm run lint && npm run test && npm run conformance",
+    "conformance": "node --test distribution/adapter-conformance-kit/test/conformance.test.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "latest",
+    "@types/node": "latest",
+    "eslint": "latest",
+    "prettier": "latest",
+    "typescript": "latest",
+    "typescript-eslint": "latest",
+    "vitest": "4.1.12"
+  },
+  "dependencies": {
+    "zod": "4.6.6"
+  },
+  "overrides": {
+    "minimatch": "11.0.1"
+  }
+}

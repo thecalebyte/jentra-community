@@ -1,0 +1,59 @@
+name: Release artifacts
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+
+  pack:
+    needs: verify
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - name: community-runtime
+            package: apps/community-runtime
+          - name: cli
+            package: apps/cli
+          - name: mcp-server
+            package: apps/mcp-server
+          - name: contracts
+            package: packages/contracts
+          - name: sdk-typescript
+            package: packages/sdk-typescript
+          - name: local-runner
+            package: packages/local-runner
+          - name: adapter-conformance-kit
+            package: distribution/adapter-conformance-kit
+          - name: agent-skill
+            package: distribution/jentra-agent-skill
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Pack ${{ matrix.package }}
+        run: mkdir -p release && npm pack ./${{ matrix.package }} --pack-destination release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ strategy.job-index }}-${{ matrix.name }}
+          path: release/*.tgz
+          if-no-files-found: error
